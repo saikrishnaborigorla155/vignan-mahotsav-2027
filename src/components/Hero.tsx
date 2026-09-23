@@ -30,7 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
 
   // Entrance choreography state
   const [isInstant, setIsInstant] = useState(false);
-  const [animationStep, setAnimationStep] = useState(0); // 0: init, 1: mountains, 2: glow, 3: warrior, 4: wordmark, 5: panels/done
+  const [animationStep, setAnimationStep] = useState(0);
 
   // Check sessionStorage for repeat visits
   useEffect(() => {
@@ -46,13 +46,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
 
   const startChoreography = () => {
     setAnimationStep(1); // mountains fade up
-    const t1 = setTimeout(() => setAnimationStep(2), 400); // glow in
-    const t2 = setTimeout(() => setAnimationStep(3), 850); // warrior in
-    const t3 = setTimeout(() => setAnimationStep(4), 1300); // wordmark draws
+    const t1 = setTimeout(() => setAnimationStep(2), 350); // glow in
+    const t2 = setTimeout(() => setAnimationStep(3), 750); // warrior in
+    const t3 = setTimeout(() => setAnimationStep(4), 1150); // wordmark draws
     const t4 = setTimeout(() => {
       setAnimationStep(5); // panels slide in
       sessionStorage.setItem('mahotsav_hero_visited', 'true');
-    }, 2200);
+    }, 1900);
 
     return () => {
       clearTimeout(t1);
@@ -89,11 +89,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // GSAP ScrollTrigger setup for hero elements
     const ctx = gsap.context(() => {
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && containerRef.current) {
         gsap.to('.hero-mountain-1', {
-          yPercent: 30,
+          yPercent: 25,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -103,7 +102,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
           },
         });
         gsap.to('.hero-mountain-2', {
-          yPercent: 22,
+          yPercent: 18,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -113,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
           },
         });
         gsap.to('.hero-mountain-3', {
-          yPercent: 15,
+          yPercent: 12,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -123,17 +122,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
           },
         });
         gsap.to('.hero-mountain-4', {
-          yPercent: 8,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-        gsap.to('.hero-ridge-fg', {
-          yPercent: -5,
+          yPercent: 7,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -143,13 +132,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
           },
         });
         gsap.to('.hero-center-content', {
-          yPercent: -18,
-          opacity: 0.15,
+          yPercent: -15,
+          opacity: 0.2,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
             start: 'top top',
-            end: '80% top',
+            end: '75% top',
             scrub: true,
           },
         });
@@ -168,13 +157,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-screen h-[100svh] overflow-hidden bg-maroon-950 flex flex-col justify-between"
+      className="relative w-full min-h-[100vh] lg:h-[100vh] overflow-hidden bg-maroon-950 flex flex-col justify-between"
       style={{
         background: 'linear-gradient(180deg, #F5A623 0%, #D96B1E 20%, #B84718 40%, #7A1F2A 70%, #2A060C 95%, #1C050A 100%)',
       }}
       aria-label="Vignan Mahotsav 2027 Hero Showcase"
     >
-      {/* Layer 0: Sky background texture from official poster */}
+      {/* Layer 0: Sky background texture */}
       <div 
         className="absolute inset-0 w-full h-full opacity-65 pointer-events-none select-none mix-blend-multiply"
         style={{
@@ -195,7 +184,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
         </button>
       )}
 
-      {/* Layer 1: Mountain Layer 1 (Farthest - moves slowest) */}
+      {/* Layer 1: Mountain Layer 1 */}
       <div className={`hero-mountain-1 transition-opacity duration-700 ${animationStep >= 1 ? 'opacity-100' : 'opacity-0'}`}>
         <MountainLayer
           layerIndex={1}
@@ -219,10 +208,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
         />
       </div>
 
-      {/* Layer 3: Pulsing Radial Light Source (Glow behind the tallest ridge and warrior) */}
+      {/* Layer 3: Pulsing Radial Light Source */}
       <div className={`transition-all duration-1000 ${animationStep >= 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}>
         <GlowSource
-          className="top-[48%] left-[50%]"
+          className="top-[46%] left-[50%]"
           mouseOffset={mouseOffset}
         />
       </div>
@@ -244,7 +233,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
         <CloudLayers mouseOffset={mouseOffset} />
       </div>
 
-      {/* Layer 6: Mountain Layer 4 (Nearer ridge) */}
+      {/* Layer 6: Mountain Layer 4 */}
       <div className={`hero-mountain-4 transition-opacity duration-700 ${animationStep >= 1 ? 'opacity-100' : 'opacity-0'}`}>
         <MountainLayer
           layerIndex={4}
@@ -256,8 +245,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
         />
       </div>
 
-      {/* Layer 7: Ridge & Peak Crags where the warrior stands */}
-      <div className={`hero-ridge-fg transition-opacity duration-700 ${animationStep >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Layer 7: Ridge & Peak Crags */}
+      <div className={`transition-opacity duration-700 ${animationStep >= 1 ? 'opacity-100' : 'opacity-0'}`}>
         <MountainLayer
           layerIndex={5}
           src="/assets/mountain_ridge.png"
@@ -268,7 +257,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
         />
       </div>
 
-      {/* Layer 8: Lone Standing Warrior on tallest ridge + Climber on cliff face */}
+      {/* Layer 8: Lone Standing Warrior on tallest ridge + Climber */}
       <div className={`transition-all duration-1000 ${animationStep >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <WarriorSilhouette
           mouseOffset={mouseOffset}
@@ -277,47 +266,45 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
         />
       </div>
 
-      {/* Hero Foreground Content: Top Wordmark, 20th Edition Lockup, and Symmetric Side Panels */}
-      <div className="relative z-30 flex-1 flex flex-col justify-between pt-16 sm:pt-20 pb-4 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pointer-events-none">
+      {/* Foreground Content: Header, Center Wordmark, and Flanking Side Panels */}
+      <div className="relative z-30 flex-1 flex flex-col justify-between pt-16 sm:pt-20 pb-3 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pointer-events-none">
         
-        {/* Top Center: 20th Edition Ribbon Lockup and Official University Emblem */}
+        {/* Top: University Badge + 20th Edition Lockup */}
         <div className="flex items-center justify-between w-full pointer-events-auto">
-          {/* Vignan Emblem badge */}
           <motion.div
             initial={isInstant ? false : { opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: isInstant ? 0 : 0.4 }}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-maroon-900/60 backdrop-blur-sm border border-gold-500/25"
+            transition={{ duration: 0.6, delay: isInstant ? 0 : 0.3 }}
+            className="flex items-center gap-2 px-3 py-1 rounded-full bg-maroon-900/60 backdrop-blur-sm border border-gold-500/25"
           >
-            <div className="w-6 h-6 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-300 font-bold text-xs">
+            <div className="w-5 h-5 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-300 font-bold text-xs">
               V
             </div>
             <div className="leading-none">
-              <span className="text-[11px] font-bold text-gold-300 tracking-wider">VIGNAN</span>
-              <span className="text-[9px] block text-zinc-400">Deemed to be University</span>
+              <span className="text-[10px] sm:text-[11px] font-bold text-gold-300 tracking-wider">VIGNAN</span>
+              <span className="text-[8px] sm:text-[9px] block text-zinc-400">Deemed to be University</span>
             </div>
           </motion.div>
 
-          {/* 20th Edition Ribbon Badge Lockup */}
           <motion.div
             initial={isInstant ? false : { opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: isInstant ? 0 : 0.4 }}
+            transition={{ duration: 0.6, delay: isInstant ? 0 : 0.3 }}
             className="flex items-center gap-2"
           >
-            <Badge20th size="md" />
+            <Badge20th size="sm" />
           </motion.div>
         </div>
 
-        {/* Center: The Bold Angular MAHOTSAV Wordmark & Tagline */}
-        <div ref={heroContentRef} className="hero-center-content my-auto py-2 pointer-events-auto">
+        {/* Center: Scaled MAHOTSAV Wordmark & Tagline */}
+        <div ref={heroContentRef} className="hero-center-content my-auto py-1 pointer-events-auto">
           {animationStep >= 4 && (
             <WordmarkReveal isInstant={isInstant} />
           )}
         </div>
 
-        {/* Desktop Symmetric Side Info Panels: Left = Registration Fee Tiers, Right = Event Categories */}
-        <div className="hidden lg:flex items-end justify-between w-full pointer-events-auto mb-2">
+        {/* Desktop Symmetric Side Info Panels: Left = Registration, Right = Categories */}
+        <div className="hidden lg:flex items-center justify-between w-full pointer-events-auto mt-auto mb-2 px-2">
           {/* Left Side: Registration Fee Tiers */}
           <div className="w-auto">
             {animationStep >= 5 && (
@@ -331,13 +318,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ repeat: Infinity, duration: 2, repeatType: 'reverse' }}
-            className="flex flex-col items-center gap-1 text-gold-400/80 hover:text-gold-300 transition-colors pb-1 cursor-pointer group"
+            className="flex flex-col items-center gap-1 text-gold-400/80 hover:text-gold-300 transition-colors pb-1 cursor-pointer group select-none"
           >
-            <span className="text-[10px] uppercase font-cinzel tracking-widest font-semibold">Explore The Arc</span>
-            <div className="w-6 h-9 rounded-full border-2 border-gold-500/40 flex items-start justify-center p-1 group-hover:border-gold-400">
-              <div className="w-1.5 h-2.5 rounded-full bg-gold-400 animate-bounce" />
+            <span className="text-[9px] uppercase font-cinzel tracking-widest font-semibold">Explore The Arc</span>
+            <div className="w-5 h-8 rounded-full border-2 border-gold-500/40 flex items-start justify-center p-0.5 group-hover:border-gold-400">
+              <div className="w-1 h-2 rounded-full bg-gold-400 animate-bounce" />
             </div>
-            <ChevronDown className="w-4 h-4 text-gold-400 group-hover:translate-y-0.5 transition-transform" />
+            <ChevronDown className="w-3.5 h-3.5 text-gold-400 group-hover:translate-y-0.5 transition-transform" />
           </motion.a>
 
           {/* Right Side: Event Categories */}
@@ -348,18 +335,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
           </div>
         </div>
 
-        {/* Mobile / Tablet View: Collapsed Quick Chips and Scroll Cue */}
-        <div className="lg:hidden flex flex-col items-center gap-3 w-full pointer-events-auto pb-2">
+        {/* Mobile / Tablet View: Quick Chips & Scroll Cue */}
+        <div className="lg:hidden flex flex-col items-center gap-2.5 w-full pointer-events-auto pb-1 mt-auto">
           <div className="flex items-center justify-center gap-3 w-full max-w-sm">
             <button
               onClick={onOpenRegister}
-              className="flex-1 py-2 px-3 rounded-lg bg-gradient-to-r from-gold-500 to-sunset-500 text-maroon-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow flex items-center justify-center gap-1.5"
+              className="flex-1 py-1.5 px-3 rounded-lg bg-gradient-to-r from-gold-500 to-sunset-500 text-maroon-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow flex items-center justify-center gap-1.5"
             >
               <span>Passes from ₹250</span>
             </button>
             <a
               href="#events"
-              className="flex-1 py-2 px-3 rounded-lg bg-maroon-900/80 border border-gold-500/30 text-gold-300 font-semibold text-xs text-center uppercase tracking-wider"
+              className="flex-1 py-1.5 px-3 rounded-lg bg-maroon-900/80 border border-gold-500/30 text-gold-300 font-semibold text-xs text-center uppercase tracking-wider"
             >
               80+ Events
             </a>
@@ -367,19 +354,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister, onSelectCategory, re
 
           <a
             href="#about"
-            className="flex items-center gap-1 text-[11px] uppercase font-cinzel tracking-widest text-gold-300/80 hover:text-gold-300"
+            className="flex items-center gap-1 text-[10px] uppercase font-cinzel tracking-widest text-gold-300/80 hover:text-gold-300"
           >
             <span>Scroll to Enter</span>
-            <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
+            <ChevronDown className="w-3 h-3 animate-bounce" />
           </a>
         </div>
       </div>
 
-      {/* Atmospheric bottom gradient fade to transition smoothly into the dark sections below */}
+      {/* Atmospheric subtle bottom fade: h-12 and opacity-40 so it never covers panels */}
       <div 
-        className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-20"
+        className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none z-10 opacity-40"
         style={{
-          background: 'linear-gradient(to top, #1C050A 0%, rgba(28, 5, 10, 0.85) 45%, transparent 100%)',
+          background: 'linear-gradient(to top, #1C050A 0%, transparent 100%)',
         }}
       />
     </section>

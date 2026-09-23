@@ -10,37 +10,37 @@ export const WordmarkReveal: React.FC<WordmarkRevealProps> = ({ isInstant = fals
   const mahotsavPath = `M1273 172 L1269 173 L1253 190 L1229 213 L1225 219 L1248 244 L1250 244 L1276 219 L1296 197 Z M345 171 L298 217 L298 219 L321 244 L323 244 L327 241 L338 229 L368 200 L369 197 Z M444 28 L444 248 L453 247 L457 245 L476 243 L481 241 L487 241 L491 240 L494 237 L495 134 L498 137 L503 146 L560 147 L562 149 L562 191 L560 195 L556 199 L547 200 L546 203 L544 203 L545 245 L575 243 L579 241 L583 241 L590 239 L598 235 L605 228 L608 223 L609 218 L611 216 L611 149 L613 147 L620 147 L623 144 L623 136 L621 128 L621 115 L619 101 L613 101 L611 99 L610 26 L564 27 L561 29 L561 97 L559 99 L496 100 L494 98 L494 27 L491 26 L448 26 Z M998 25 L995 28 L995 31 L993 35 L991 52 L988 61 L987 73 L1005 74 L1011 73 L1013 75 L997 87 L993 92 L995 95 L1071 168 L1092 190 L1091 193 L1045 193 L1042 192 L1037 187 L1034 176 L1020 180 L1015 183 L1011 183 L1008 185 L1005 185 L1003 187 L994 189 L989 192 L988 195 L991 202 L993 211 L995 213 L996 218 L1000 225 L1008 235 L1021 243 L1108 243 L1117 241 L1129 236 L1139 228 L1145 219 L1149 200 L1149 184 L1148 178 L1144 170 L1140 165 L1050 78 L1049 73 L1086 73 L1093 75 L1098 78 L1102 86 L1116 84 L1119 82 L1136 80 L1139 78 L1142 78 L1145 76 L1145 66 L1141 50 L1137 40 L1135 37 L1126 29 L1116 25 Z M835 25 L831 28 L831 33 L830 34 L827 61 L827 75 L884 76 L881 79 L873 82 L870 85 L870 202 L873 218 L880 231 L883 235 L891 242 L905 249 L909 249 L912 251 L922 251 L925 248 L925 245 L927 242 L929 234 L929 229 L931 226 L933 214 L936 207 L935 203 L932 203 L929 201 L922 194 L920 188 L921 76 L969 75 L971 73 L977 26 L975 25 Z M631 37 L631 223 L635 232 L644 240 L656 243 L785 243 L799 240 L809 233 L812 229 L815 222 L814 79 L815 70 L812 45 L809 37 L804 29 L798 25 L692 25 L688 29 L683 39 L681 41 L679 25 L669 28 L658 29 L655 31 L639 33 Z M681 74 L765 75 L764 193 L680 192 Z M1558 25 L1495 26 L1494 28 L1492 28 L1491 44 L1489 50 L1487 71 L1488 75 L1510 76 L1511 81 L1511 93 L1508 118 L1503 138 L1500 146 L1493 158 L1484 170 L1474 180 L1468 182 L1465 175 L1464 169 L1462 167 L1461 161 L1455 144 L1453 142 L1448 124 L1446 122 L1444 113 L1434 88 L1432 79 L1429 74 L1428 68 L1422 54 L1421 48 L1418 43 L1416 34 L1411 23 L1401 25 L1395 28 L1387 29 L1380 32 L1372 33 L1363 37 L1363 42 L1367 51 L1369 60 L1371 62 L1372 69 L1379 86 L1380 92 L1383 98 L1384 104 L1387 110 L1392 128 L1395 133 L1400 152 L1403 157 L1404 163 L1407 169 L1413 190 L1415 193 L1416 199 L1419 205 L1419 208 L1423 216 L1425 226 L1427 228 L1428 234 L1431 240 L1432 246 L1435 252 L1436 258 L1440 268 L1455 263 L1457 261 L1466 259 L1471 256 L1476 255 L1478 253 L1484 252 L1488 250 L1489 248 L1491 247 L1489 244 L1488 238 L1485 233 L1484 222 L1495 227 L1501 228 L1506 223 L1525 198 L1526 195 L1531 189 L1533 184 L1536 181 L1536 179 L1545 164 L1553 143 L1553 139 L1556 133 L1557 124 L1560 116 L1564 88 L1564 52 L1560 32 L1560 27 Z M1180 40 L1177 44 L1175 88 L1210 88 L1218 90 L1215 99 L1213 101 L1208 113 L1207 118 L1205 120 L1200 132 L1199 137 L1197 139 L1192 151 L1191 156 L1189 158 L1184 170 L1183 175 L1176 189 L1171 204 L1169 206 L1164 218 L1163 223 L1160 227 L1159 235 L1165 236 L1171 239 L1178 240 L1187 244 L1195 245 L1197 247 L1201 247 L1203 245 L1212 225 L1213 220 L1220 206 L1221 201 L1226 189 L1228 187 L1236 168 L1237 163 L1241 156 L1242 151 L1244 149 L1245 144 L1252 130 L1257 115 L1260 111 L1261 106 L1263 104 L1265 107 L1265 109 L1267 111 L1268 117 L1271 122 L1272 128 L1275 133 L1281 152 L1283 154 L1283 157 L1287 165 L1289 173 L1291 175 L1292 181 L1295 186 L1295 189 L1299 197 L1301 205 L1303 207 L1305 216 L1307 218 L1308 224 L1311 229 L1317 248 L1321 248 L1327 245 L1333 244 L1339 241 L1345 240 L1350 237 L1356 236 L1360 234 L1362 232 L1360 224 L1356 213 L1353 208 L1348 192 L1346 190 L1344 181 L1342 179 L1341 173 L1334 157 L1332 149 L1329 144 L1328 138 L1325 133 L1313 98 L1309 90 L1340 89 L1343 84 L1344 79 L1345 62 L1348 50 L1349 40 L1287 39 L1290 28 L1290 24 L1264 15 L1262 13 L1254 11 L1248 14 L1247 19 L1244 23 L1244 26 L1240 33 L1239 38 L1237 40 Z M251 42 L250 64 L248 73 L247 87 L283 88 L291 90 L291 92 L287 99 L286 104 L284 106 L283 111 L276 125 L275 130 L270 142 L268 144 L267 149 L262 161 L260 163 L258 171 L256 173 L255 178 L251 185 L250 190 L248 192 L247 197 L240 211 L239 216 L235 223 L234 228 L232 230 L232 235 L238 236 L247 240 L254 241 L257 243 L268 245 L271 247 L274 247 L277 244 L281 232 L284 228 L287 218 L296 199 L297 194 L300 190 L301 185 L316 152 L317 147 L324 133 L325 128 L327 126 L329 118 L331 116 L332 111 L336 104 L339 108 L340 114 L343 119 L344 125 L346 127 L352 146 L355 151 L356 156 L358 158 L360 167 L364 178 L367 183 L368 189 L371 194 L380 221 L383 226 L387 237 L387 240 L391 247 L391 249 L395 248 L400 245 L410 243 L412 241 L418 240 L432 235 L435 232 L435 229 L433 227 L432 221 L429 216 L429 213 L427 208 L425 206 L424 199 L421 194 L419 186 L416 181 L416 178 L413 173 L412 167 L409 162 L407 154 L405 152 L403 143 L397 130 L396 124 L393 119 L387 100 L384 95 L384 89 L413 89 L416 86 L417 71 L419 65 L422 41 L360 39 L363 24 L325 10 L322 13 L319 19 L318 24 L316 26 L315 31 L311 39 L254 40 Z M27 30 L22 51 L20 54 L18 66 L15 73 L16 76 L32 77 L22 83 L19 86 L20 245 L42 243 L47 241 L65 240 L70 239 L73 236 L74 77 L91 78 L93 245 L106 243 L110 241 L129 239 L133 237 L139 237 L142 236 L145 232 L146 77 L167 77 L169 79 L169 166 L168 180 L166 190 L164 194 L158 199 L159 247 L165 247 L170 245 L176 245 L183 243 L192 239 L200 233 L208 223 L209 219 L212 215 L219 194 L220 50 L218 41 L213 33 L208 29 L201 27 L144 26 L144 11 L100 10 L97 11 L96 10 L92 13 L92 25 L90 27 L32 26 Z`;
 
   return (
-    <div className="relative flex flex-col items-center justify-center text-center select-none px-4 max-w-5xl mx-auto z-20">
+    <div className="relative flex flex-col items-center justify-center text-center select-none px-4 max-w-4xl mx-auto z-20">
       {/* Top Header: Sub-brand banner */}
       <motion.div
-        initial={isInstant ? false : { opacity: 0, y: -15 }}
+        initial={isInstant ? false : { opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: isInstant ? 0 : 0.6 }}
-        className="flex items-center gap-3 mb-2"
+        transition={{ duration: 0.6, delay: isInstant ? 0 : 0.5 }}
+        className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-1.5"
       >
-        <span className="h-[1px] w-8 md:w-16 bg-gradient-to-r from-transparent to-gold-400" />
-        <p className="text-xs md:text-sm lg:text-base font-cinzel tracking-[0.3em] uppercase text-gold-300 font-semibold drop-shadow">
+        <span className="h-[1px] w-6 sm:w-12 bg-gradient-to-r from-transparent to-gold-400" />
+        <p className="text-[10px] sm:text-xs md:text-sm font-cinzel tracking-[0.25em] uppercase text-gold-300 font-semibold drop-shadow">
           A National Level Youth Fest
         </p>
-        <span className="h-[1px] w-8 md:w-16 bg-gradient-to-l from-transparent to-gold-400" />
+        <span className="h-[1px] w-6 sm:w-12 bg-gradient-to-l from-transparent to-gold-400" />
       </motion.div>
 
-      {/* Main Display Wordmark with Vertical "VIGNAN" on Left and Animated SVG for "MAHOTSAV" */}
-      <div className="relative w-full flex items-center justify-center my-1 md:my-2">
+      {/* Main Display Wordmark */}
+      <div className="relative w-full flex items-center justify-center my-0.5 sm:my-1">
         {/* Vertical VIGNAN lettering */}
         <motion.div
-          initial={isInstant ? false : { opacity: 0, x: -15 }}
+          initial={isInstant ? false : { opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: isInstant ? 0 : 0.8 }}
-          className="absolute -left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 flex items-center justify-center"
+          transition={{ duration: 0.6, delay: isInstant ? 0 : 0.7 }}
+          className="absolute -left-1 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 flex items-center justify-center"
         >
-          <div className="writing-vertical-lr transform rotate-180 text-[10px] sm:text-xs md:text-sm font-black tracking-[0.4em] text-gold-400 uppercase border-r border-gold-500/40 pr-1.5 py-1">
+          <div className="[writing-mode:vertical-rl] rotate-180 text-[8px] sm:text-[10px] md:text-xs font-black tracking-[0.35em] text-gold-400 uppercase border-r border-gold-500/40 pr-1 py-0.5">
             VIGNAN
           </div>
         </motion.div>
 
-        {/* SVG Wordmark with Animated Path Length Stroke and Gradient Fill */}
-        <div className="w-[85%] sm:w-[88%] md:w-[92%] max-w-4xl filter drop-shadow-[0_10px_25px_rgba(28,5,10,0.8)]">
+        {/* Scalable SVG Wordmark */}
+        <div className="w-[82%] sm:w-[85%] md:w-[88%] max-w-[620px] filter drop-shadow-[0_8px_20px_rgba(28,5,10,0.85)]">
           <svg
             viewBox="0 0 1578 282"
             className="w-full h-auto overflow-visible"
@@ -78,38 +78,36 @@ export const WordmarkReveal: React.FC<WordmarkRevealProps> = ({ isInstant = fals
               initial={isInstant ? false : { pathLength: 0, fillOpacity: 0 }}
               animate={{ pathLength: 1, fillOpacity: 1 }}
               transition={{
-                pathLength: { duration: 1.8, ease: [0.25, 1, 0.5, 1], delay: isInstant ? 0 : 0.8 },
-                fillOpacity: { duration: 1.0, ease: 'easeIn', delay: isInstant ? 0 : 1.4 },
+                pathLength: { duration: 1.6, ease: [0.25, 1, 0.5, 1], delay: isInstant ? 0 : 0.7 },
+                fillOpacity: { duration: 0.9, ease: 'easeIn', delay: isInstant ? 0 : 1.3 },
               }}
             />
           </svg>
         </div>
       </div>
 
-      {/* Tagline Lockup: "The Arc of Becoming" with Shooting Star Accent and Date */}
+      {/* Tagline Lockup */}
       <motion.div
-        initial={isInstant ? false : { opacity: 0, y: 15 }}
+        initial={isInstant ? false : { opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: isInstant ? 0 : 1.6 }}
-        className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-2 sm:mt-3"
+        transition={{ duration: 0.7, delay: isInstant ? 0 : 1.4 }}
+        className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 mt-1 sm:mt-1.5"
       >
-        {/* Tagline with shooting star */}
-        <div className="flex items-center gap-2">
-          <span className="font-cinzel text-lg sm:text-xl md:text-2xl font-bold tracking-wide text-parchment drop-shadow-md">
+        <div className="flex items-center gap-1.5">
+          <span className="font-cinzel text-sm sm:text-base md:text-lg font-bold tracking-wide text-parchment drop-shadow-md">
             The Arc of Becoming
           </span>
           <img
             src="/assets/shooting_star.png"
             alt=""
-            className="w-5 h-5 sm:w-6 sm:h-6 object-contain filter drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]"
+            className="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]"
             aria-hidden="true"
           />
         </div>
 
         <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-gold-400" />
 
-        {/* Date badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-maroon-900/80 border border-gold-500/30 text-gold-300 font-outfit font-semibold text-xs sm:text-sm tracking-wider">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-maroon-900/85 border border-gold-500/30 text-gold-300 font-outfit font-semibold text-[11px] sm:text-xs tracking-wider">
           <span>★</span>
           <span>11-13 Feb 2027</span>
         </div>
