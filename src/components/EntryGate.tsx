@@ -101,6 +101,19 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
     }
   }, [stage]);
 
+  // Pre-prime video element on mount for instant mobile playback
+  useEffect(() => {
+    const mainVideo = mainVideoRef.current;
+    if (mainVideo) {
+      mainVideo.muted = true;
+      mainVideo.defaultMuted = true;
+      mainVideo.setAttribute('playsinline', 'true');
+      mainVideo.setAttribute('webkit-playsinline', 'true');
+      mainVideo.setAttribute('x5-playsinline', 'true');
+      mainVideo.load();
+    }
+  }, []);
+
   /**
    * Completes the entry gate sequence:
    * Cross-fades into the homepage content over 500ms, then unmounts the gate overlay.
@@ -160,10 +173,10 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
   }, [addTimer, finishGate]);
 
   /**
-   * Handle user action (Click or Enter/Space key on "Enter" prompt)
+   * Handle user action (Click, Touch, or Enter/Space key on "Enter" prompt)
    */
   const handleEnterClick = useCallback(() => {
-    if (stage !== 'prompt') return;
+    if (stageRef.current !== 'prompt') return;
 
     // Respect user's motion preferences
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -172,49 +185,56 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
       return;
     }
 
-    // Step 1: Fade out the "Enter" prompt (200ms)
-    setStage('prompt_fading');
+    const mainVideo = mainVideoRef.current;
+    const bgVideo = bgVideoRef.current;
+
+    // 1. Immediately switch stage so the video container becomes visible and active
+    setStage('playing');
     setPromptOpacity(0);
 
-    // Step 2: After 200ms, switch to video playback and play videos
-    addTimer(() => {
-      setStage('playing');
-
-      const mainVideo = mainVideoRef.current;
-      const bgVideo = bgVideoRef.current;
-
-      if (!mainVideo) {
-        finishGate();
-        return;
-      }
-
-      // Sync and start background blurred video on desktop if present
-      if (bgVideo) {
-        bgVideo.currentTime = 0;
-        bgVideo.play().catch(() => {
-          // Non-critical background effect; ignore autoplay restriction if any
-        });
-      }
-
-      // Start main video
+    // 2. CRITICAL FOR MOBILE: Call play() SYNCHRONOUSLY within this user gesture!
+    if (mainVideo) {
+      mainVideo.muted = true;
+      mainVideo.defaultMuted = true;
+      mainVideo.playsInline = true;
+      mainVideo.setAttribute('playsinline', 'true');
+      mainVideo.setAttribute('webkit-playsinline', 'true');
+      mainVideo.setAttribute('x5-playsinline', 'true');
       mainVideo.currentTime = 0;
+
       const playPromise = mainVideo.play();
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
-          console.warn('Video play prevented or failed:', err);
-          handleVideoError();
+          console.warn('Initial play prevented, attempting muted retry:', err);
+          mainVideo.muted = true;
+          mainVideo.defaultMuted = true;
+          mainVideo.play().catch((retryErr) => {
+            console.warn('Mobile video play completely blocked:', retryErr);
+            handleVideoError();
+          });
         });
       }
+    } else {
+      finishGate();
+      return;
+    }
 
-      // Watchdog timer: video is ~4.83s. If onEnded does not fire within 6.5s, trigger fallback
-      addTimer(() => {
-        if (stageRef.current !== 'completed' && stageRef.current !== 'cross_fading') {
-          console.info('Watchdog timer triggered entry completion');
-          finishGate();
-        }
-      }, 6500);
-    }, 200);
-  }, [stage, addTimer, finishGate, handleVideoError]);
+    // 3. On desktop only, also start blurred background video
+    if (bgVideo && window.innerWidth >= 768) {
+      bgVideo.currentTime = 0;
+      bgVideo.muted = true;
+      bgVideo.defaultMuted = true;
+      bgVideo.play().catch(() => {});
+    }
+
+    // 4. Watchdog timer: video is ~5s. If onEnded does not fire within 7.5s, trigger completion
+    addTimer(() => {
+      if (stageRef.current !== 'completed' && stageRef.current !== 'cross_fading') {
+        console.info('Watchdog timer triggered entry completion');
+        finishGate();
+      }
+    }, 7500);
+  }, [addTimer, finishGate, handleVideoError]);
 
   /**
    * Keyboard accessibility for "Enter" prompt
@@ -307,6 +327,10 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
               <button
                 ref={enterButtonRef}
                 onClick={handleEnterClick}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  handleEnterClick();
+                }}
                 onKeyDown={handleKeyDown}
                 tabIndex={0}
                 aria-label="Enter Vignan Mahotsav 2027 experience"
@@ -333,8 +357,8 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
           {/* 
             STAGE 2: Video Playback Screen
             - Background: Blurred/darkened synchronized video filling pillarbox/letterbox on wide screens
-            - Foreground: 1080x2340 portrait video centered and scaled to fill/fit without distortion
-            - Preloaded during Stage 1 with preload="auto"
+            - Foreground: 1920x1080 landscape video centered and scaled to fill/fit without distortion
+            - Preloaded during Stage 1 with preload="auto" and FastStart moov atom at beginning of MP4
           */}
           <div
             className={`absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden bg-maroon-950 transition-opacity duration-300 ${
@@ -356,7 +380,7 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
             {/* Subtle dark vignette around edges */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-maroon-950/80 via-transparent to-maroon-950/80" />
 
-            {/* Main Full-Screen Centered Video (1080x2340 Portrait) */}
+            {/* Main Full-Screen Centered Video */}
             <div className="relative z-10 w-full h-full flex items-center justify-center">
               <video
                 ref={mainVideoRef}
@@ -367,8 +391,10 @@ export const EntryGate: React.FC<EntryGateProps> = ({ children }) => {
                 onEnded={() => finishGate()}
                 onError={handleVideoError}
                 aria-label="Vignan Mahotsav 2027 Intro Video"
-                className="w-full h-full max-h-screen object-contain md:object-cover shadow-2xl transition-transform duration-300"
-              />
+                className="w-full h-full max-h-screen object-contain shadow-2xl transition-transform duration-300"
+              >
+                <source src={VIDEO_PATH} type="video/mp4" />
+              </video>
             </div>
 
             {/* 
