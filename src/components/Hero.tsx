@@ -354,7 +354,7 @@ export const Hero: React.FC<HeroProps> = ({
       />
 
       {/* Top Header Spacing (Handled by floating Navbar) */}
-      <div className="w-full pt-14 sm:pt-20 pointer-events-none" aria-hidden="true" />
+      <div className="w-full pt-6 sm:pt-8 pointer-events-none" aria-hidden="true" />
 
 
       {/* ─────────────────────────────────────────────────────────────
